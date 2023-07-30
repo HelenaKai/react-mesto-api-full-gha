@@ -1,0 +1,4 @@
+.popup__input-wrap {
+  display: flex;
+  flex-direction: column;
+}

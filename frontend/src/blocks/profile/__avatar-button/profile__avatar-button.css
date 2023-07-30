@@ -1,0 +1,28 @@
+.profile__avatar-button {
+  outline: none;
+  border: none;
+  position: relative;
+  border-radius: 50%;
+  background: transparent;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.profile__avatar-button::after {
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  transition: all 0.3s ease;
+}
+
+.profile__avatar-button:hover::after {
+  outline: 2px solid rgba(0, 0, 0, 0.8);
+  background: center 50% / 26px no-repeat url(../../../images/ico-edit.svg) rgba(0, 0, 0, 0.8);
+}
+
