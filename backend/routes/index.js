@@ -7,6 +7,12 @@ const { validationCreateUser, validationLogin } = require('../middlewares/valida
 
 const NotFoundError = require('../errors/notFoundError');
 
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 router.post('/signup', validationCreateUser, createUser);
 router.post('/signin', validationLogin, login);
 
@@ -16,7 +22,7 @@ router.use('/users', userRoutes);
 router.use('/cards', cardRoutes);
 
 router.use('*', (req, res, next) => {
-  next(new NotFoundError('Запрошен несуществующий роут'));
+  next(new NotFoundError('Запрошен несуществующий адрес'));
 });
 
 module.exports = router;

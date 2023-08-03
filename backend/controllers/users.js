@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const { ValidationError, CastError } = require('mongoose').Error;
 const User = require('../models/user');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const UnauthorizedError = require('../errors/unauthorizedError');
 const ConflictError = require('../errors/conflictError');
 const BadRequestError = require('../errors/badRequestError');
@@ -105,13 +107,13 @@ const login = (req, res, next) => {
 
   User.findOne({ email })
     .select('+password')
-    .orFail(() => new UnauthorizedError('Неправильные почта или найден'))
+    .orFail(() => new UnauthorizedError('Неправильные почта или пароль'))
 
     .then((user) => {
       bcrypt.compare(password, user.password)
         .then((validUser) => {
           if (validUser) {
-            const token = jwt.sign({ _id: user._id }, 'my-secret-key', { expiresIn: '7d' });
+            const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'my-secret-key', { expiresIn: '7d' });
             res.send({ token });
           } else {
             throw new UnauthorizedError('Неправильные почта или пароль');

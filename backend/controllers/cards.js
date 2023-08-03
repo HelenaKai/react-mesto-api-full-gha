@@ -8,6 +8,7 @@ const ForbiddenError = require('../errors/forbiddenError');
 // Получить данные о всех карточках
 const getCards = (req, res, next) => {
   Card.find({})
+    .populate(['owner', 'likes'])
     .then((cards) => res.status(200).send(cards))
     .catch(next);
 };
@@ -18,7 +19,13 @@ const createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: _id })
-    .then((card) => res.status(201).send(card))
+  /*  .then((card) => res.status(201).send(card)) */
+    .then((card) => {
+      card
+        .populate('owner')
+        .then(() => res.status(201).send(card))
+        .catch(next);
+    })
     .catch((error) => {
       if (error instanceof ValidationError) {
         next(new BadRequestError('Переданы некорректные данные при создании карточки.'));
@@ -62,6 +69,7 @@ const likeCard = (req, res, next) => {
     { new: true },
   )
     .orFail(new NotFoundError('Карточка с указанным id не найдена.'))
+    .populate(['owner', 'likes'])
     .then((card) => res.status(200).send(card))
     .catch((error) => {
       if (error instanceof CastError) {
@@ -83,6 +91,7 @@ const dislikeCard = (req, res, next) => {
     { new: true },
   )
     .orFail(new NotFoundError('Карточка с указанным id не найдена.'))
+    .populate(['owner', 'likes'])
     .then((card) => res.status(200).send(card))
     .catch((error) => {
       if (error instanceof CastError) {
