@@ -94,16 +94,26 @@ class Api {
 
 //----------Подключить API
 const api = new Api({
-  /* baseUrl: "https://mesto.nomoreparties.co/v1/cohort-64", */
- /*  baseUrl: "http://localhost:3000", */
-  baseUrl: "http://api.helenrizik.nomoreparties.co",
+  baseUrl: "https://api.helenrizik.nomoreparties.co",
   headers: {
     "Content-Type": "application/json",
 }
-/*   headers: {
-    authorization: "75002ca2-dbbe-408c-9329-d30070b2e425",
-    "Content-Type": "application/json",
-  }, */
 });
 
 export default api;
+
+
+
+/* const api = new Api({
+  /* baseUrl: "https://mesto.nomoreparties.co/v1/cohort-64", */
+ /*  baseUrl: "http://localhost:3000", */
+ 
+/*   baseUrl: "http://api.helenrizik.nomoreparties.co",
+  headers: {
+    "Content-Type": "application/json",
+} */
+/*   headers: {
+    authorization: "75002ca2-dbbe-408c-9329-d30070b2e425",
+    "Content-Type": "application/json",
+  }, 
+}); */

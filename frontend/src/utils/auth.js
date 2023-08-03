@@ -1,6 +1,6 @@
 /* const BASE_URL = "https://auth.nomoreparties.co"; */
 /* const BASE_URL = "http://localhost:3000";  */
-const BASE_URL = "http://api.helenrizik.nomoreparties.co";
+const BASE_URL = "https://api.helenrizik.nomoreparties.co";
 
 const checkResponse = (res) => {
   if (res.ok) {
@@ -34,7 +34,7 @@ function checkToken(token) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      "Authorization": `Bearer ${token}`,
     },
   }).then(checkResponse);
 }
