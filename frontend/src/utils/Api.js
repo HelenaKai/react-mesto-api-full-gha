@@ -95,7 +95,8 @@ class Api {
 //----------Подключить API
 const api = new Api({
   /* baseUrl: "https://mesto.nomoreparties.co/v1/cohort-64", */
-  baseUrl: "http://localhost:3000",
+ /*  baseUrl: "http://localhost:3000", */
+  baseUrl: "http://api.helenrizik.nomoreparties.co",
   headers: {
     "Content-Type": "application/json",
 }
