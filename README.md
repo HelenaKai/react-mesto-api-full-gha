@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 130.193.40.133
+IP 130.193.40.133
 
 Frontend https://helenrizik.nomoreparties.co
 
